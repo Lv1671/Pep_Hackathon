@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
 const Songs = require("./Songs.json");
-
+const number = "Enter Your number"
 
 // VARIABLES
 const baseURI = "https://wynk.in";
@@ -19,6 +19,15 @@ async function main() {
 
      const page = await browser.newPage();
      await page.goto(baseURI);
+     //ENTER YOUR OTP
+     await page.waitForSelector(".signin.ml-4");
+     await page.click(".signin.ml-4");
+     await page.waitForSelector("#phoneno");
+     await page.type("#phoneno", number);
+     await page.click(".red.button"); 
+     await page.waitForTimeout(10000);
+
+
      for (let idx = 0; idx < Songs.length; idx++) {
          let songName = Songs[idx].SongNames;
           await page.waitForTimeout(500);
